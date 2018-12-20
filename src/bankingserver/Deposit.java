@@ -25,9 +25,12 @@ public class Deposit {
         bal=Integer.parseInt(rs.getString(1));
         email=rs.getString(2);
         bal+=amt;
-        }
         stmt.executeUpdate("Update USERDETAIL set current_bal="+bal+" where acc="+acc);
+        try{
         SendEmail.sendmail(email,"Your acc XXXX"+acc+"Credited with INR "+amt+" new balance is INR "+bal,"Transaction Alert");
+        }
+        catch(Exception e){System.out.println("Email Sending Failed due to: "+e);}
+        }
         }
         catch(Exception e){return(-1);}
         return(bal);

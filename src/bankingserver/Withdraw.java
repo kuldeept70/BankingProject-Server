@@ -30,7 +30,10 @@ public class Withdraw {
         if(amt<=bal)
         { bal-=amt;
           stmt.executeUpdate("Update USERDETAIL set current_bal="+bal+" where acc="+acc);
+          try{
           SendEmail.sendmail(email, "Your acc XXXX"+acc+" debited with amount INR "+amt+" Your balance is INR "+bal,"Transaction Alert");
+          }
+          catch(Exception e){ System.out.println("Email Sending Failed due to: "+e);}
         }
         else
             throw new ArithmeticException();
