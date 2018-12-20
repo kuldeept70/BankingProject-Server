@@ -13,25 +13,23 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
+import java.net.UnknownHostException;
 public class SendEmail {
-    public static void sendmail(String email,String msg,String sub){    
+    public static void sendmail(String email,String msg,String sub)throws Exception{    
    	        final String username = "bankingprojectjnu@gmail.com";
 		final String password = "bankingproject123@";
-
+                try {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
-
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password);
 			}
 		  });
-
-		try {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("bankingprojectjnu@gmail.com"));
@@ -46,8 +44,11 @@ public class SendEmail {
 			System.out.println("Done");
 
 		} catch (MessagingException e) {
+                        System.out.println("Email Exception found due to: "+e);
 			throw new RuntimeException(e);
 		}
+                catch(Exception e){System.out.println("Exception found is: "+e);}
+                finally{ System.out.println("Try to Connect Internet ");}
     
         }
 }
