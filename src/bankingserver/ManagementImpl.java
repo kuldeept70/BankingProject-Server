@@ -111,9 +111,10 @@ public class ManagementImpl extends UnicastRemoteObject implements Management{
         else{
             int temp=Withdraw.withdraw(acc,amt,date);
             if((temp!=-1)&&(temp!=-2)){
-             int xtemp=deposit(r_acc,amt,date);
+             int xtemp=Deposit.deposit(r_acc, amt, date);
              if(xtemp!=-1&&xtemp!=-2)
-             {   MakeStatement.createStatement(acc, amt,temp, date,"Transfer by self");
+             {   MakeStatement.createStatement(r_acc, amt, xtemp, date,"Transfer by account no "+acc);
+                 MakeStatement.createStatement(acc, amt,temp, date,"Transfer by self");
                  return(temp);
              }
              else
