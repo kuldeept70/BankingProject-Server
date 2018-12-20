@@ -15,7 +15,7 @@ import javax.mail.internet.*;
 import javax.activation.*;
 import java.net.UnknownHostException;
 public class SendEmail {
-    public static void sendmail(String email,String msg,String sub)throws Exception{    
+    public static void sendmail(String email,String msg,String sub){    
    	        final String username = "bankingprojectjnu@gmail.com";
 		final String password = "bankingproject123@";
                 try {
@@ -44,11 +44,9 @@ public class SendEmail {
 			System.out.println("Done");
 
 		} catch (MessagingException e) {
-                        System.out.println("Email Exception found due to: "+e);
+                        System.out.println("Email Exception found due to: "+e+"\n Connect to Internet");
 			throw new RuntimeException(e);
 		}
-                catch(Exception e){System.out.println("Exception found is: "+e);}
-                finally{ System.out.println("Try to Connect Internet ");}
     
         }
 }

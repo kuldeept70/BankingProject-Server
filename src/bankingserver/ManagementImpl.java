@@ -96,7 +96,7 @@ public class ManagementImpl extends UnicastRemoteObject implements Management{
     @Override
     public int deposit(int acc,int amt,String date){
         int temp=Deposit.deposit(acc, amt, date);
-        if(temp!=-1){
+        if(temp!=-1&&temp!=-2){
             MakeStatement.createStatement(acc, amt, temp, date, "by bank deposit");
             return(temp);
         }
@@ -111,7 +111,8 @@ public class ManagementImpl extends UnicastRemoteObject implements Management{
         else{
             int temp=Withdraw.withdraw(acc,amt,date);
             if((temp!=-1)&&(temp!=-2)){
-             if(Deposit.deposit(r_acc,amt,date)!=-1)
+             int xtemp=deposit(r_acc,amt,date);
+             if(xtemp!=-1&&xtemp!=-2)
              {   MakeStatement.createStatement(acc, amt,temp, date,"Transfer by self");
                  return(temp);
              }
