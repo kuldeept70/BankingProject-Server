@@ -45,7 +45,7 @@ public class SendEmail {
 
 		} catch (MessagingException e) {
                         System.out.println("Email Exception found due to: "+e+"\n Connect to Internet");
-			throw new RuntimeException(e);
+			/*throw new RuntimeException(e);*/
 		}
     
         }

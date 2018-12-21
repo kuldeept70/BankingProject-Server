@@ -30,7 +30,6 @@ public class Deposit {
         stmt.executeUpdate("Update USERDETAIL set current_bal="+bal+" where acc="+acc);
         SendEmail.sendmail(email,"Your acc XXXX"+acc+"Credited with INR "+amt+" new balance is INR "+bal,"Transaction Alert");
         }
-        catch(RuntimeException e){return(bal);}
         catch(Exception e){System.out.println("testing "+e);return(-1);}
         return(bal);
     }

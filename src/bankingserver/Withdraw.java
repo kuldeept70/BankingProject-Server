@@ -36,7 +36,6 @@ public class Withdraw {
             throw new ArithmeticException();
         }
         catch(ArithmeticException e){if(flag==1)return(-2);else return(-1);}
-        catch(RuntimeException e){ return(bal);}
         catch(Exception e){System.out.println("err ; "+e);return(-1);}
         return(bal);
     }
